@@ -1,11 +1,16 @@
-import { FaUsers, FaBuilding, FaMapPin } from "react-icons/fa";
-import "./Sidebar.css";
+import { FaUsers, FaBuilding, FaMapPin, FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Sidebar  = () => {
     return (
         <div className="sidebar">
             <ul>
+                <li>
+                    <Link to="/">
+                        <FaHome/> 
+                        Home
+                    </Link>
+                </li>
                 <li>
                     <Link to="/employee">
                         <FaUsers/> 

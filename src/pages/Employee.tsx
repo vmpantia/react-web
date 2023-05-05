@@ -1,4 +1,4 @@
-import Title from "../component/Shared/Title";
+import Title from "../components/Shared/Title";
 
 const Employee = () => {
     return (
