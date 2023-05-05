@@ -1,8 +1,9 @@
+import Title from "../component/Shared/Title";
+
 const Employee = () => {
     return (
-        <div>
-            This is employee page
-        </div>
+        <Title title="Employee" 
+               description="In this page you can see all the list of employee stored in database."/>
     );
 }
 

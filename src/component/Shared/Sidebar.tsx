@@ -13,7 +13,7 @@ const Sidebar  = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/">
+                    <Link to="/department">
                         <FaBuilding/> 
                         Department
                     </Link>
