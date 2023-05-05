@@ -87,3 +87,20 @@ th, td{
 tr:nth-child(even) {
   background-color: whitesmoke;
 }
+
+.status {
+  color: gainsboro;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 1px 6px;
+  border-radius: 3px;
+  box-shadow: 2px 2px 3px silver;
+}
+.Enabled {
+  background-color: #27ae60;
+  color: white;
+}
+.Disabled {
+  background-color: #c0392b;
+  color: white;
+}

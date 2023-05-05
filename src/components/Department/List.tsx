@@ -1,4 +1,6 @@
 import { departmentDTO } from "../../models/dtos/departmentDTO";
+import { format } from 'date-fns'
+import Button from "../Shared/Button";
 
 type Props = {
     dataSource: departmentDTO[];
@@ -6,6 +8,11 @@ type Props = {
 
 const List = (props:Props) => {
     const { dataSource } = props;
+
+    const editButtonClicked = () => {
+        console.log("edit clicked");
+    }
+
     return (
         <table>
             <thead>
@@ -26,13 +33,19 @@ const List = (props:Props) => {
                             <td><input type="checkbox"></input></td>
                             <td>{data.name}</td>
                             <td>{data.description}</td>
-                            <td>{data.statusDescription}</td>
-                            <td>{data.createdDate.toDateString()}</td>
-                            <td>{data.modifiedDate.toDateString()}</td>
                             <td>
-                                <button>Edit</button>
-                                <button>Disable</button>
+                                <span className={"status " + data.statusDescription}>
+                                    {data.statusDescription}
+                                </span>
+                            </td>
+                            <td>{format(data.createdDate, "yyyy/MM/dd")}</td>
+                            <td>{format(data.modifiedDate, "yyyy/MM/dd")}</td>
+                            <td>
+                                <Button text="Edit" onButtonClickedHandler={editButtonClicked} /  >
                                 <button>View</button>
+                                {data.status === 0 ? 
+                                    <button>Disable</button> : 
+                                    <button>Enable</button>}
                             </td>
                         </tr>
                     );

@@ -14,8 +14,8 @@ export const stb_departmentList : departmentDTO[] = [
         internalID: "test",
         name: "IT",
         description: "Pantia",
-        status: 0,
-        statusDescription: "Enabled",
+        status: 1,
+        statusDescription: "Disabled",
         createdDate: new Date(),
         modifiedDate: new Date()
     }
