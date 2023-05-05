@@ -1,15 +1,20 @@
-import './App.css';
-import SideBar from './component/SideBar/SideBar';
+import {BrowserRouter, Routes, Route } from "react-router-dom";
+
+//Pages
+import Layout from "./pages/Layout";
+import Home from "./pages/Home";
+import Employee from "./pages/Employee";
 
 function App() {
   return (
-    <div>
-      <section className='main-header'>
-      </section>
-      <section className='main-content'>
-        <SideBar />
-      </section>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />}/>
+          <Route path="employee" element={<Employee />}/>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
