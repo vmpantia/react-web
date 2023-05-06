@@ -29,23 +29,23 @@ const List = (props:Props) => {
             <tbody>
                 {dataSource.map(data => {
                     return (
-                        <tr key={data.internalID}>
+                        <tr key={data.internalID.toString()}>
                             <td><input type="checkbox"></input></td>
                             <td>{data.name}</td>
                             <td>{data.description}</td>
                             <td>
-                                <span className={"status " + data.statusDescription}>
+                                <span className={"status " + data.statusDescription.toLocaleLowerCase() + "-status"}>
                                     {data.statusDescription}
                                 </span>
                             </td>
-                            <td>{format(data.createdDate, "yyyy/MM/dd")}</td>
-                            <td>{format(data.modifiedDate, "yyyy/MM/dd")}</td>
+                            <td>{format(data.createdDate, "yyyy-MM-dd")}</td>
+                            <td>{format(data.modifiedDate, "yyyy-MM-dd")}</td>
                             <td>
-                                <Button text="Edit" onButtonClickedHandler={editButtonClicked} /  >
-                                <button>View</button>
+                                <Button text="Edit" onButtonClickedHandler={editButtonClicked} /> &nbsp;
+                                <Button text="View" onButtonClickedHandler={editButtonClicked} /> &nbsp;
                                 {data.status === 0 ? 
-                                    <button>Disable</button> : 
-                                    <button>Enable</button>}
+                                    <Button text="Disable" onButtonClickedHandler={editButtonClicked} />: 
+                                    <Button text="Enable" onButtonClickedHandler={editButtonClicked} />}
                             </td>
                         </tr>
                     );
