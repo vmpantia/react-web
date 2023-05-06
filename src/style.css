@@ -105,15 +105,15 @@ tr:nth-child(even) {
   color: white;
 }
 
-.btn {
+.icon-btn {
   border:none;
-  padding: 5px 10px;
   border-radius: 3px;
 }
-.btn svg {
-  font-size: 11px;
-  margin-right: 5px;
+.icon-btn svg {
+  padding-top: 2px;
+  text-align:center;
 }
+
 .edit-btn {
   background-color: #fa983a;
   color: white;
@@ -145,4 +145,11 @@ tr:nth-child(even) {
 .disable-btn:enabled:hover {
   background-color: #c0392b;
   color: white;
+}
+.delete-btn {
+  background-color: #353b48;
+  color: white;
+}
+.delete-btn:enabled:hover {
+  background-color: #2f3640;
 }

@@ -1,6 +1,6 @@
 import { departmentDTO } from "../../models/dtos/departmentDTO";
 import { format } from 'date-fns'
-import Button from "../Shared/Button";
+import IconButton from "../Shared/IconButton";
 
 type Props = {
     dataSource: departmentDTO[];
@@ -41,11 +41,12 @@ const List = (props:Props) => {
                             <td>{format(data.createdDate, "yyyy-MM-dd")}</td>
                             <td>{format(data.modifiedDate, "yyyy-MM-dd")}</td>
                             <td>
-                                <Button text="Edit" onButtonClickedHandler={editButtonClicked} /> &nbsp;
-                                <Button text="View" onButtonClickedHandler={editButtonClicked} /> &nbsp;
+                                <IconButton text="Edit" onButtonClickedHandler={editButtonClicked} /> &nbsp;
+                                <IconButton text="View" onButtonClickedHandler={editButtonClicked} /> &nbsp;
                                 {data.status === 0 ? 
-                                    <Button text="Disable" onButtonClickedHandler={editButtonClicked} />: 
-                                    <Button text="Enable" onButtonClickedHandler={editButtonClicked} />}
+                                    <IconButton text="Disable" onButtonClickedHandler={editButtonClicked} />: 
+                                    <IconButton text="Enable" onButtonClickedHandler={editButtonClicked} />} &nbsp;
+                                <IconButton text="Delete" onButtonClickedHandler={editButtonClicked} />
                             </td>
                         </tr>
                     );
