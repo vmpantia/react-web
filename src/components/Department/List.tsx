@@ -4,17 +4,14 @@ import IconButton from "../Shared/IconButton";
 
 type Props = {
     dataSource: departmentDTO[];
+    editButtonClickedHandler: () => void;
 }
 
 const List = (props:Props) => {
-    const { dataSource } = props;
-
-    const editButtonClicked = () => {
-        console.log("edit clicked");
-    }
+    const { dataSource, editButtonClickedHandler } = props;
 
     return (
-        <table>
+        <table className="table">
             <thead>
                 <tr>
                     <th><input type="checkbox"></input></th>
@@ -41,12 +38,12 @@ const List = (props:Props) => {
                             <td>{format(data.createdDate, "yyyy-MM-dd")}</td>
                             <td>{format(data.modifiedDate, "yyyy-MM-dd")}</td>
                             <td>
-                                <IconButton text="Edit" onButtonClickedHandler={editButtonClicked} /> &nbsp;
-                                <IconButton text="View" onButtonClickedHandler={editButtonClicked} /> &nbsp;
+                                <IconButton text="Edit" onButtonClickedHandler={editButtonClickedHandler} /> &nbsp;
+                                <IconButton text="View" onButtonClickedHandler={editButtonClickedHandler} /> &nbsp;
                                 {data.status === 0 ? 
-                                    <IconButton text="Disable" onButtonClickedHandler={editButtonClicked} />: 
-                                    <IconButton text="Enable" onButtonClickedHandler={editButtonClicked} />} &nbsp;
-                                <IconButton text="Delete" onButtonClickedHandler={editButtonClicked} />
+                                    <IconButton text="Disable" onButtonClickedHandler={editButtonClickedHandler} />: 
+                                    <IconButton text="Enable" onButtonClickedHandler={editButtonClickedHandler} />} &nbsp;
+                                <IconButton text="Delete" onButtonClickedHandler={editButtonClickedHandler} />
                             </td>
                         </tr>
                     );
