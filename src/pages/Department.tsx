@@ -16,6 +16,7 @@ import { FaPlus } from "react-icons/fa";
 
 //Data
 import { stb_departmentList } from "../stubs/Stub";
+import DropDown from "../components/Shared/Dropdown";
 
 const Department = () => {
     const [departmentList, setDepartmentList] = useState(stb_departmentList as departmentDTO[]);
@@ -140,6 +141,7 @@ const Department = () => {
                             <div className="modal-body">
                                 <TextBox name="name" label="Name" placeholder="Enter Department Name" value={departmentInfo.name} onChangedHandler={(e) => textChanged(e)} />
                                 <TextArea name="description" label="Description"placeholder="Enter Department Description" value={departmentInfo.description} onChangedHandler={(e) => textChanged(e)}/>
+                                <DropDown />
                                 <div className="form-buttons">
                                     <button type="submit">Save</button>
                                     <button onClick={cancelClicked}>Cancel</button>
