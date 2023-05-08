@@ -3,11 +3,11 @@ type Props = {
     label:string;
     value:string;
     placeholder:string;
-    onTextChangedHandler: () => void;
+    onChangedHandler: (e:any) => void;
 }
 
 const TextArea = (props:Props) => {
-    const {name, label, value, placeholder, onTextChangedHandler} = props;
+    const {name, label, value, placeholder, onChangedHandler} = props;
   return (
     <div className="form-input">
         <label htmlFor={name}>{label}:</label>
@@ -15,7 +15,7 @@ const TextArea = (props:Props) => {
                   placeholder={placeholder}
                   name={name}
                   value ={value}
-                  onChange={onTextChangedHandler}/>
+                  onChange={(e) => onChangedHandler(e)}/>
     </div>  
   )
 }
