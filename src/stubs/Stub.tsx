@@ -1,8 +1,9 @@
+import uuid from "react-uuid";
 import { departmentDTO } from "../models/dtos/departmentDTO";
 
 export const stb_departmentList : departmentDTO[] = [
     {
-        internalID: "test",
+        internalID: uuid(),
         name: "IT",
         description: "Vincent",
         status: 0,
@@ -11,7 +12,7 @@ export const stb_departmentList : departmentDTO[] = [
         modifiedDate: new Date()
     }, 
     {
-        internalID: "tae",
+        internalID: uuid(),
         name: "IT",
         description: "Lesther",
         status: 1,

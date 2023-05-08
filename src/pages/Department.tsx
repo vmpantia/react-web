@@ -1,4 +1,5 @@
 import { useState } from "react";
+import uuid from 'react-uuid'
 
 //Models
 import { departmentDTO } from "../models/dtos/departmentDTO";
@@ -36,7 +37,7 @@ const Department = () => {
     const saveClicked = (e:any) => {
         e.preventDefault();
         const data: departmentDTO = {
-            internalID: "tanga",
+            internalID: uuid(),
             name: departmentInfo.name,
             description: departmentInfo.description,
             status: 0,
@@ -60,6 +61,7 @@ const Department = () => {
                 <thead>
                     <tr>
                         <th><input type="checkbox"></input></th>
+                        <th>InternalID</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Status</th>
@@ -72,7 +74,8 @@ const Department = () => {
                     {departmentList.map(data => {
                         return (
                             <tr key={data.internalID.toString()}>
-                                <td><input type="checkbox"></input></td>
+                                <td>{<input type="checkbox"></input>}</td>
+                                <td>{data.internalID}</td>
                                 <td>{data.name}</td>
                                 <td>{data.description}</td>
                                 <td>
