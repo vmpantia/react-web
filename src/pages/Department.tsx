@@ -1,5 +1,7 @@
 import { useState } from "react";
-import uuid from 'react-uuid'
+import uuid from 'react-uuid'  
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 //Models
 import { departmentDTO } from "../models/dtos/departmentDTO";
@@ -38,12 +40,14 @@ const Department = () => {
         data.statusDescription = "Enabled";
         data.modifiedDate = new Date();
         updateDepartmentList(data, false);
+        toast.success("Update Department Status Successfully!");
     }
     const disableClicked = (data:departmentDTO) => {
         data.status = 1;
         data.statusDescription = "Disabled";
         data.modifiedDate = new Date();
         updateDepartmentList(data, false);
+        toast.success("Update Department Status Successfully!");
     }
     const saveClicked = (e:any) => {
         e.preventDefault();
@@ -61,6 +65,7 @@ const Department = () => {
 
         updateDepartmentList(data, isAdd);
         setModalShow(false);
+        toast.success("Save Department Successfully!");
     }
     const cancelClicked = () => {
         setModalShow(false);
@@ -80,6 +85,7 @@ const Department = () => {
     }
     return (
         <>
+            <ToastContainer  />
             <Title title="Department" 
                 description="In this page you can see all the list of department stored in database."/>
             <button onClick={addClicked}>Add</button>
