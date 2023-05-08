@@ -114,6 +114,7 @@ code {
 .icon-btn {
   border:none;
   border-radius: 3px;
+  padding: 3px 7px;
 }
 .icon-btn svg {
   padding-top: 2px;

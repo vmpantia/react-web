@@ -30,6 +30,18 @@ const Department = () => {
         setModalShow(true);
         setDepartmentInfo(data);
     }
+    const enableClicked = (data:departmentDTO) => {
+        data.status = 0;
+        data.statusDescription = "Enabled";
+        data.modifiedDate = new Date();
+        updateDepartmentList(data);
+    }
+    const disableClicked = (data:departmentDTO) => {
+        data.status = 1;
+        data.statusDescription = "Disabled";
+        data.modifiedDate = new Date();
+        updateDepartmentList(data);
+    }
     const addClicked = () => {
         setModalShow(true);
         setDepartmentInfo({} as departmentDTO);
@@ -42,28 +54,29 @@ const Department = () => {
             internalID: isAdd ? uuid() : departmentInfo.internalID,
             name: departmentInfo.name,
             description: departmentInfo.description,
-            status: 0,
-            statusDescription: "Enabled",
+            status: isAdd ? 0 : departmentInfo.status,
+            statusDescription: isAdd ? "Enabled" : departmentInfo.statusDescription,
             createdDate: new Date(),
             modifiedDate: new Date()
         }
         //Add Department
         if(isAdd)
             setDepartmentList([...departmentList, data]);  
-            
         //Edit Department 
-        else {
-            let currentData = departmentList.filter(x => x.internalID === data.internalID)[0];
-            let index = departmentList.indexOf(currentData);
-            let tempList = [...departmentList];
-            tempList[index] = data;
-            setDepartmentList(tempList);
-        }
+        else 
+            updateDepartmentList(data);
 
         setModalShow(false);
     }
     const cancelClicked = () => {
         setModalShow(false);
+    }
+    const updateDepartmentList = (data:departmentDTO) => {
+        let currentData = departmentList.filter(x => x.internalID === data.internalID)[0];
+        let index = departmentList.indexOf(currentData);
+        let tempList = [...departmentList];
+        tempList[index] = data;
+        setDepartmentList(tempList);
     }
 
     return (
@@ -75,7 +88,6 @@ const Department = () => {
                 <thead>
                     <tr>
                         <th><input type="checkbox"></input></th>
-                        <th>InternalID</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Status</th>
@@ -89,7 +101,6 @@ const Department = () => {
                         return (
                             <tr key={data.internalID.toString()}>
                                 <td>{<input type="checkbox"></input>}</td>
-                                <td>{data.internalID}</td>
                                 <td>{data.name}</td>
                                 <td>{data.description}</td>
                                 <td>
@@ -100,12 +111,12 @@ const Department = () => {
                                 <td>{format(data.createdDate, "yyyy-MM-dd")}</td>
                                 <td>{format(data.modifiedDate, "yyyy-MM-dd")}</td>
                                 <td>
-                                    <IconButton text="Edit" onButtonClickedHandler={() => editClicked(data)} /> &nbsp;
-                                    <IconButton text="View" onButtonClickedHandler={() => editClicked(data)} /> &nbsp;
+                                    <IconButton text="Edit" onClickedHandler={() => editClicked(data)} /> &nbsp;
+                                    <IconButton text="View" onClickedHandler={() => editClicked(data)} /> &nbsp;
                                     {data.status === 0 ? 
-                                        <IconButton text="Disable" onButtonClickedHandler={() => editClicked(data)} />: 
-                                        <IconButton text="Enable" onButtonClickedHandler={() => editClicked(data)} />} &nbsp;
-                                    <IconButton text="Delete" onButtonClickedHandler={() => editClicked(data)} />
+                                        <IconButton text="Disable" onClickedHandler={() => disableClicked(data)} />: 
+                                        <IconButton text="Enable" onClickedHandler={() => enableClicked(data)} />} &nbsp;
+                                    <IconButton text="Delete" onClickedHandler={() => editClicked(data)} />
                                 </td>
                             </tr>
                         );

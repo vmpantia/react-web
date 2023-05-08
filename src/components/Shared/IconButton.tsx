@@ -2,16 +2,16 @@ import { FaArrowDown, FaArrowUp, FaPencilAlt, FaSearch, FaStreetView, FaTrash, F
 
 type Props = {
     text:string;
-    onButtonClickedHandler: () => void;
+    onClickedHandler: () => void;
 }
 
 const IconButton = (props:Props) => {
-    const {text, onButtonClickedHandler} = props;
+    const {text, onClickedHandler} = props;
 
     return(
         <button className={"icon-btn " + text.toLocaleLowerCase() + "-btn"}
                 title={text}
-                onClick={onButtonClickedHandler}> 
+                onClick={onClickedHandler}> 
             {{ "Edit" : <FaPencilAlt/>,
                "View" : <FaStreetView/>,
                "Enable" : <FaArrowUp/>,
