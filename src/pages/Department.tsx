@@ -36,8 +36,10 @@ const Department = () => {
     }
     const saveClicked = (e:any) => {
         e.preventDefault();
+
+        let isAdd = departmentInfo.internalID === undefined;
         const data: departmentDTO = {
-            internalID: uuid(),
+            internalID: isAdd ? uuid() : departmentInfo.internalID,
             name: departmentInfo.name,
             description: departmentInfo.description,
             status: 0,
@@ -45,7 +47,19 @@ const Department = () => {
             createdDate: new Date(),
             modifiedDate: new Date()
         }
-        setDepartmentList([...departmentList, data]);
+        //Add Department
+        if(isAdd)
+            setDepartmentList([...departmentList, data]);  
+            
+        //Edit Department 
+        else {
+            let currentData = departmentList.filter(x => x.internalID === data.internalID)[0];
+            let index = departmentList.indexOf(currentData);
+            let tempList = [...departmentList];
+            tempList[index] = data;
+            setDepartmentList(tempList);
+        }
+
         setModalShow(false);
     }
     const cancelClicked = () => {
