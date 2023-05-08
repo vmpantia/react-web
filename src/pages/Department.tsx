@@ -16,7 +16,6 @@ import { FaPlus } from "react-icons/fa";
 import { stb_departmentList } from "../stubs/Stub";
 
 const Department = () => {
-
     const [departmentList, setDepartmentList] = useState(stb_departmentList as departmentDTO[]);
     const [departmentInfo, setDepartmentInfo] = useState({} as departmentDTO);
     const [modalShow, setModalShow] = useState(false);
@@ -26,6 +25,10 @@ const Department = () => {
             return {...data, [e.target.name]: [e.target.value]}
         });
     }
+    const addClicked = () => {
+        setModalShow(true);
+        setDepartmentInfo({} as departmentDTO);
+    }
     const editClicked = (data:departmentDTO) => {
         setModalShow(true);
         setDepartmentInfo(data);
@@ -34,17 +37,13 @@ const Department = () => {
         data.status = 0;
         data.statusDescription = "Enabled";
         data.modifiedDate = new Date();
-        updateDepartmentList(data);
+        updateDepartmentList(data, false);
     }
     const disableClicked = (data:departmentDTO) => {
         data.status = 1;
         data.statusDescription = "Disabled";
         data.modifiedDate = new Date();
-        updateDepartmentList(data);
-    }
-    const addClicked = () => {
-        setModalShow(true);
-        setDepartmentInfo({} as departmentDTO);
+        updateDepartmentList(data, false);
     }
     const saveClicked = (e:any) => {
         e.preventDefault();
@@ -59,26 +58,26 @@ const Department = () => {
             createdDate: new Date(),
             modifiedDate: new Date()
         }
-        //Add Department
-        if(isAdd)
-            setDepartmentList([...departmentList, data]);  
-        //Edit Department 
-        else 
-            updateDepartmentList(data);
 
+        updateDepartmentList(data, isAdd);
         setModalShow(false);
     }
     const cancelClicked = () => {
         setModalShow(false);
     }
-    const updateDepartmentList = (data:departmentDTO) => {
+    const updateDepartmentList = (data:departmentDTO, isAdd:boolean) => {
+
+        if(isAdd) {
+            setDepartmentList([...departmentList, data]);  
+            return;
+        }
+
         let currentData = departmentList.filter(x => x.internalID === data.internalID)[0];
         let index = departmentList.indexOf(currentData);
         let tempList = [...departmentList];
         tempList[index] = data;
         setDepartmentList(tempList);
     }
-
     return (
         <>
             <Title title="Department" 
